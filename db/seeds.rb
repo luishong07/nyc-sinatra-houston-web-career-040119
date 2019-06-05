@@ -28,14 +28,7 @@ landmarks_list = {
     }
   }
 
-landmarks_list.each do |name, landmark_hash|
-  p = Landmark.new
-  p.name = name
-  landmark_hash.each do |attribute, value|
-      p[attribute] = value
-  end
-  p.save
-end
+
 
 figure_list = {
     "Billy The Kid" => {
@@ -44,13 +37,23 @@ figure_list = {
     },
     "Ada Lovelace" => {
     },
-    "Linus Torvalds" => { 
+    "Linus Torvalds" => {
     }
   }
 
 figure_list.each do |name, figure_hash|
   p = Figure.new
   p.name = name
+  p.save
+end
+
+landmarks_list.each do |name, landmark_hash|
+  p = Landmark.new
+  p.name = name
+  landmark_hash.each do |attribute, value|
+      p[attribute] = value
+  end
+  p.figure = Figure.all.sample
   p.save
 end
 
